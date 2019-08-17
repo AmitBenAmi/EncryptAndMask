@@ -18,6 +18,10 @@ let decode = (dataToDecode) => {
     return decoder.decode(dataToDecode)
 }
 
+let arrayBufferToIntArray = (buffer) => {
+    return new Uint8Array(buffer)
+}
+
 let createKey = async (key, usages) => {
     let encodedKey = encode(key)
     let algorithm = {
@@ -45,8 +49,15 @@ let createDecryptionKey = async (key) => {
     return await createKey(key, ['decrypt'])
 }
 
-let encrypt = async (dataToEncrypt, key) => {
-    let encodedData = encode(dataToEncrypt)
+let encrypt = async (dataToEncrypt, key, isBuffered) => {
+    let encodedData
+
+    if (isBuffered) {
+        encodedData = arrayBufferToIntArray(dataToEncrypt)
+    } else {
+        encodedData = encode(dataToEncrypt)
+    }
+
     let encryptionKey = await createEncryptionKey(key)
 
     try {
