@@ -1,11 +1,12 @@
-let changeEventForFilesLoad = () => {
+let changeEventForFilesLoad = (event) => {
     let reader = new FileReader()
 
-    reader.onload = () => {
-        let arrayBuffer = this.result
+    reader.onload = (eventAfterLoad) => {
+        let fileBufferedData = eventAfterLoad.target.result
+        let encryptedFile = encrypt(fileBufferedData)
     }
 
-    reader.readAsArrayBuffer(this.files[0])
+    reader.readAsArrayBuffer(event.target.files[0])
 }
 
 window.addEventListener('load', () => {
