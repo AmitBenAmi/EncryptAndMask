@@ -4,7 +4,7 @@
   "description": "Encrypting and Decrypting with xor",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js",
+    "start": "node dist/Server/index.js",
     "compile": "babel src --out-dir dist/Server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
