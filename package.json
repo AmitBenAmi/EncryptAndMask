@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AmitBenAmi/EncryptAndDecrypt/issues"
   },
-  "homepage": "https://github.com/AmitBenAmi/EncryptAndDecrypt#readme"
+  "homepage": "https://github.com/AmitBenAmi/EncryptAndDecrypt#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
