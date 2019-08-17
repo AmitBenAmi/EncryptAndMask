@@ -3,7 +3,10 @@ let changeEventForFilesLoad = (event) => {
 
     reader.onload = (eventAfterLoad) => {
         let fileBufferedData = eventAfterLoad.target.result
-        let encryptedFile = encrypt(fileBufferedData)
+
+        let key = document.querySelector('#key').innerHTML
+
+        let encryptedFile = encrypt(fileBufferedData, key, true)
     }
 
     reader.readAsArrayBuffer(event.target.files[0])
