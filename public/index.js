@@ -1,10 +1,13 @@
 let changeEventForFilesLoad = (event) => {
     let reader = new FileReader()
 
-    reader.onload = (eventAfterLoad) => {
+    reader.onload = async (eventAfterLoad) => {
         let fileBufferedData = eventAfterLoad.target.result
 
-        let encryptedFile = encrypt(fileBufferedData, true)
+        let encryptedFile = await encrypt(fileBufferedData, true)
+        let maskedEncryptedFile = mask(encryptedFile)
+
+        console.log(`File encrypted, Encrypted data: ${encryptedFile}`)
     }
 
     reader.readAsArrayBuffer(event.target.files[0])
