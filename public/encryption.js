@@ -66,7 +66,7 @@ let createDecryptionKey = async (key) => {
     return await createKey(key, ['decrypt'])
 }
 
-let encrypt = async (dataToEncrypt, key, isBuffered) => {
+let encrypt = async (dataToEncrypt, isBuffered) => {
     let encodedData
 
     if (isBuffered) {
@@ -74,6 +74,8 @@ let encrypt = async (dataToEncrypt, key, isBuffered) => {
     } else {
         encodedData = encode(dataToEncrypt)
     }
+
+    let key = calculateKey_b()
 
     let encryptionKey = await createEncryptionKey(key)
 

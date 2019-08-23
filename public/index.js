@@ -4,8 +4,6 @@ let changeEventForFilesLoad = (event) => {
     reader.onload = (eventAfterLoad) => {
         let fileBufferedData = eventAfterLoad.target.result
 
-        let key = $('#key').val()
-
         let encryptedFile = encrypt(fileBufferedData, key, true)
     }
 
