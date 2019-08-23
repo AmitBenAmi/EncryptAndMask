@@ -1,10 +1,12 @@
 import path from 'path'
 import express from 'express'
+import bodyParser from 'body-parser'
 import dh from './dhAlgo'
 const app = express()
 const port = 3000
 
 app.use(express.static(path.join(__dirname, '../../public')))
+app.use(bodyParser)
 
 app.get('favicon.ico', (req, res) => {
     res.status(204)
