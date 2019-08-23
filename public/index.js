@@ -5,19 +5,26 @@ let changeEventForFilesLoad = (event) => {
         let fileBufferedData = eventAfterLoad.target.result
 
         let encryptedFile = await encrypt(fileBufferedData, true)
-        let maskedEncryptedFile = mask(encryptedFile)
+        console.log(`File is encrypted`)
 
-        console.log(`File encrypted, Encrypted data: ${encryptedFile}`)
+        let maskedEncryptedFile = mask(encryptedFile)
+        console.log(`File is masked`)
+
+        let exposedBValue = `{${getMyPublic()}}`
+        var maskedFileToTransfer = await new Blob([exposedBValue, maskedEncryptedFile]).arrayBuffer()
+
+        let response = await $.post('/transfer', {
+            fileBuffer: maskedFileToTransfer
+        })
     }
 
     reader.readAsArrayBuffer(event.target.files[0])
 }
 
-$(document).ready(() => {
+$(document).ready(async () => {
     $(`#fileInput`).change(changeEventForFilesLoad)
 
-    $.get('/public', (data) => {
-        init(data.public)
-        $('#fileInput').prop('disabled', false)
-    })
+    let result = await $.get('/public')
+    init(result.public)
+    $('#fileInput').prop('disabled', false)
 })

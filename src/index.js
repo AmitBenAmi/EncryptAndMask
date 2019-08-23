@@ -16,6 +16,10 @@ app.get('/public', (req, res) => {
     })
 })
 
+app.post('/transfer', (req, res) => {
+    console.log('This is cool')
+})
+
 app.listen(port, () => {
     console.log(`Listening on port ${port}.`)
 })
