@@ -1,7 +1,9 @@
-const p = 17
-const g = 9
-const a = 15
-const A = Math.pow(g, a) % p
+const bigInt = require('big-integer')
+
+const p = new bigInt(7577) // Must be prime
+const g = new bigInt(1367)
+const a = 16
+const A = g.pow(a).mod(p)
 
 class DHAlgorithm {
     static get public() {
@@ -9,7 +11,7 @@ class DHAlgorithm {
     }
     
     calculateKey_a = (B) => {
-        return Math.pow(B, a) % p
+        return new bigInt(B).pow(a).mod(p)
     }
 }
 

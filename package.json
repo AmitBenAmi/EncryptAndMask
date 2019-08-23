@@ -16,6 +16,7 @@
   },
   "homepage": "https://github.com/AmitBenAmi/EncryptAndDecrypt#readme",
   "dependencies": {
+    "big-integer": "^1.6.44",
     "express": "^4.17.1"
   },
   "devDependencies": {
