@@ -8,8 +8,8 @@ class DHAlgorithm {
         return A
     }
     
-    calculateDHPublicFromOtherSide = (valB) => {
-        return Math.pow(valB, a) % p
+    calculateKey_a = (B) => {
+        return Math.pow(B, a) % p
     }
 }
 
