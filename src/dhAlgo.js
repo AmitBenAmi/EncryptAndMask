@@ -1,11 +1,11 @@
 const p = 17
 const g = 9
 const a = 15
-const gPower_a_mod_p = Math.pow(g, a) % p
+const A = Math.pow(g, a) % p
 
 class DHAlgorithm {
     static get public() {
-        return gPower_a_mod_p
+        return A
     }
     
     calculateDHPublicFromOtherSide = (valB) => {
