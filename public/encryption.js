@@ -7,6 +7,23 @@ const counterModeAlgorithm = {
 }
 const subtleCrypto = crypto.subtle
 const maskerValue = 123
+const p = 17
+const g = 9
+const b = 11
+const gPower_b_mod_p = Math.pow(g, b) % p
+let A = undefined
+
+let init = (public) => {
+    A = public
+}
+
+let public = () => {
+    return gPower_b_mod_p
+}
+
+let calculateKey_b = () => {
+    return Math.pow(A, b) % p
+}
 
 let encode = (dataToEncode) => {
     let encoder = new TextEncoder()
