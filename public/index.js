@@ -12,4 +12,9 @@ let changeEventForFilesLoad = (event) => {
 
 $(document).ready(() => {
     $(`#fileInput`).on(`change`, changeEventForFilesLoad, false)
+
+    $.get('/public', (data) => {
+        init(data.public)
+        $('#fileInput').prop('disabled', false)
+    })
 })
