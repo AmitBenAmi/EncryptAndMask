@@ -7,14 +7,14 @@ const counterModeAlgorithm = {
 }
 const subtleCrypto = crypto.subtle
 const maskerValue = 123
-const p = 17
-const g = 9
-const b = 11
-const gPower_b_mod_p = Math.pow(g, b) % p
+const p = new bigInt(7577) // Must be prime
+const g = new bigInt(1367)
+const b = 5
+const gPower_b_mod_p = g.pow(b).mod(p)
 let A
 
 let init = (public) => {
-    A = public
+    A = new bigInt(public)
 }
 
 let public = () => {
@@ -22,7 +22,7 @@ let public = () => {
 }
 
 let calculateKey_b = () => {
-    return Math.pow(A, b) % p
+    return A.pow(b).mod(p)
 }
 
 let encode = (dataToEncode) => {
