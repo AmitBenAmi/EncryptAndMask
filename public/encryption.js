@@ -11,7 +11,7 @@ const p = 17
 const g = 9
 const b = 11
 const gPower_b_mod_p = Math.pow(g, b) % p
-let A = undefined
+let A
 
 let init = (public) => {
     A = public

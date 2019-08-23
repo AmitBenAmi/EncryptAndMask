@@ -4,14 +4,14 @@ let changeEventForFilesLoad = (event) => {
     reader.onload = (eventAfterLoad) => {
         let fileBufferedData = eventAfterLoad.target.result
 
-        let encryptedFile = encrypt(fileBufferedData, key, true)
+        let encryptedFile = encrypt(fileBufferedData, true)
     }
 
     reader.readAsArrayBuffer(event.target.files[0])
 }
 
 $(document).ready(() => {
-    $(`#fileInput`).on(`change`, changeEventForFilesLoad, false)
+    $(`#fileInput`).change(changeEventForFilesLoad)
 
     $.get('/public', (data) => {
         init(data.public)
