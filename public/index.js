@@ -4,7 +4,7 @@ let changeEventForFilesLoad = (event) => {
     reader.onload = (eventAfterLoad) => {
         let fileBufferedData = eventAfterLoad.target.result
 
-        let key = document.querySelector('#key').innerHTML
+        let key = $('#key').val()
 
         let encryptedFile = encrypt(fileBufferedData, key, true)
     }
@@ -12,6 +12,6 @@ let changeEventForFilesLoad = (event) => {
     reader.readAsArrayBuffer(event.target.files[0])
 }
 
-window.addEventListener('load', () => {
-    document.querySelector(`#fileInput`).addEventListener(`change`, changeEventForFilesLoad, false)
+$(document).ready(() => {
+    $(`#fileInput`).on(`change`, changeEventForFilesLoad, false)
 })
