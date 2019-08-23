@@ -11,7 +11,9 @@ app.get('favicon.ico', (req, res) => {
 })
 
 app.get('/public', (req, res) => {
-    res.send(dh.public)
+    res.send({
+        public: dh.public
+    })
 })
 
 app.listen(port, () => {
