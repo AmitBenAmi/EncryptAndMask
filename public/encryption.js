@@ -97,27 +97,11 @@ let decrypt = async (dataToDecrypt, key) => {
 }
 
 let mask = (dataToMaskAsArrayBuffer) => {
-    let sharedBuffer = new SharedArrayBuffer(dataToMaskAsArrayBuffer.byteLength)
-    let dataToMaskAsFloats = new Float32Array(dataToMaskAsArrayBuffer)
-    let sharedFloats = new Float32Array(sharedBuffer)
-    sharedFloats.set(dataToMaskAsFloats, 0)
-    let sharedBufferToMask = sharedFloats.buffer
-    let sharedBufferToMaskAsInts = new Uint8Array(sharedBufferToMask)
+    let maskedArray = new Uint8Array(dataToMaskAsArrayBuffer.byteLength)
 
-    console.log(`Before masker: ${sharedBufferToMaskAsInts}`)
-
-    let indices = [...sharedBufferToMaskAsInts.keys()]
-    indices.forEach((index) => {
-        Atomics.xor(sharedBufferToMaskAsInts, index, maskerValue)
-        Atomics.load(sharedBufferToMaskAsInts, index)
+    new Uint8Array(dataToMaskAsArrayBuffer).forEach((value, index) => {
+        maskedArray[index] = value ^ maskerValue
     })
 
-    console.log(`After masker: ${sharedBufferToMaskAsInts}`)
-
-    let maskedArrayBuffer = new ArrayBuffer(sharedBufferToMaskAsInts.buffer.byteLength)
-    let maskedDataAsFloats = new Float32Array(sharedBufferToMaskAsInts.buffer)
-    let maskedSharedFloats = new Float32Array(maskedArrayBuffer)
-    maskedSharedFloats.set(maskedDataAsFloats, 0)
-
-    return maskedSharedFloats.buffer
+    return maskedArray.buffer
 }
