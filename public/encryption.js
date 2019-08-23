@@ -17,7 +17,7 @@ let init = (public) => {
     A = new bigInt(public)
 }
 
-let public = () => {
+let getMyPublic = () => {
     return gPower_b_mod_p
 }
 
