@@ -1,6 +1,6 @@
 import path from 'path'
 import express from 'express'
-import * as dh from './dhAlgo'
+import dh from './dhAlgo'
 const app = express()
 const port = 3000
 
@@ -11,7 +11,7 @@ app.get('favicon.ico', (req, res) => {
 })
 
 app.get('/public', (req, res) => {
-    res.send(dh.getDHPublic())
+    res.send(dh.public)
 })
 
 app.listen(port, () => {
