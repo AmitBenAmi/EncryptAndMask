@@ -8,10 +8,7 @@
     "compile": "babel src --out-dir dist/Server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AmitBenAmi/EncryptAndDecrypt.git"
-  },
+  "repository": "git+https://github.com/AmitBenAmi/EncryptAndDecrypt.git",
   "author": "Amit Ben Ami",
   "license": "ISC",
   "bugs": {
