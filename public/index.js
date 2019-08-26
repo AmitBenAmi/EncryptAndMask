@@ -1,5 +1,5 @@
-import Crypto from './crypto'
-import Mask from './mask'
+import Crypto from './crypto.js'
+import Mask from './mask.js'
 const maskValue = 4233
 let crypto
 let masker
