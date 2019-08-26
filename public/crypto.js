@@ -14,9 +14,9 @@ const ecdhGenerationKeyAlgorithm = {
 }
 
 class Crypto {
-    constructor(publicKey) {
-        this.ecdhKeyPair = this._generateKey()
-        this.encryptionKey = this._deriveKey(publicKey)
+    async init(publicKey) {
+        this.ecdhKeyPair = await this._generateKey()
+        this.encryptionKey = await this._deriveKey(publicKey)
     }
 
     get publicKey() {

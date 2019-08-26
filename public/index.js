@@ -30,7 +30,7 @@ let changeEventForFilesLoad = (event) => {
 
 $(document).ready(async () => {
     let publicKey = await $.get('/publicKey')
-    crypto = new Crypto(publicKey)
+    crypto = new Crypto().init(publicKey)
     masker = new Mask(maskValue)
 
     $(`#fileInput`).change(changeEventForFilesLoad)
