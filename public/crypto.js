@@ -15,7 +15,7 @@ const ecdhGenerationKeyAlgorithm = {
 
 class Crypto {
     constructor(publicKey) {
-        this.ecdhKeyPair = subtleCrypto.generateKey(ecdhGenerationKeyAlgorithm, false, ['deriveKey'])
+        this.ecdhKeyPair = this._generateKey()
         this.encryptionKey = this._deriveKey(publicKey)
     }
 
@@ -37,6 +37,14 @@ class Crypto {
             return await subtleCrypto.decrypt(counterModeAlgorithm, encryptionKey, dataToDecrypt)
         } catch (e) {
             console.error(`Couldn't decrypt data. Reason: ${e.message}`)
+        }
+    }
+
+    async _generateKey() {
+        try {
+            await subtleCrypto.generateKey(ecdhGenerationKeyAlgorithm, false, ['deriveKey'])
+        } catch (e) {
+            console.error(`Couldn't generate key. Reason: ${e.message}`)
         }
     }
 
