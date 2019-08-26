@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node dist/Server/index.js",
-    "compile": "babel src --out-dir dist/Server",
+    "compile": "babel src --out-dir dist/Server --delete-dir-on-start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "git+https://github.com/AmitBenAmi/EncryptAndDecrypt.git",
