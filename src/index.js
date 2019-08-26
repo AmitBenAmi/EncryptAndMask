@@ -3,6 +3,7 @@ import express from 'express'
 import ECDHAlgorithm from './ecdhAlgo'
 const app = express()
 const port = 3000
+const ecdh = new ECDHAlgorithm()
 
 app.use(express.static(path.join(__dirname, '../../public')))
 app.use(express.json())
@@ -12,7 +13,6 @@ app.get('favicon.ico', (req, res) => {
 })
 
 app.get('/publicKey', (req, res) => {
-    let ecdh = new ECDHAlgorithm()
     res.send({
         public: ecdh.public
     })
