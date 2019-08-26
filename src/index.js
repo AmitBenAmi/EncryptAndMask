@@ -11,7 +11,7 @@ app.get('favicon.ico', (req, res) => {
     res.status(204)
 })
 
-app.get('/public', (req, res) => {
+app.get('/publicKey', (req, res) => {
     let ecdh = new ECDHAlgorithm()
     res.send({
         public: ecdh.public
