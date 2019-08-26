@@ -1,30 +1,38 @@
+import Crypto from './crypto'
+import Mask from './mask'
+const maskValue = 4233
+let crypto
+let masker
+
+let onFileLoad = async (eventAfterLoad) => {
+    let fileBufferedData = eventAfterLoad.target.result
+
+    let encryptedFile = await crypto.encrypt(fileBufferedData)
+    console.info(`File is encrypted`)
+
+    let maskedEncryptedFile = masker.digest(encryptedFile)
+    console.info(`File is masked`)
+
+    let publicKey = crypto.publicKey
+    var maskedFileToTransfer = await new Blob([publicKey, maskedEncryptedFile]).arrayBuffer()
+
+    let response = await $.post('/transfer', {
+        //fileBuffer: maskedFileToTransfer
+        fileBuffer: 'hello'
+    })
+}
+
 let changeEventForFilesLoad = (event) => {
     let reader = new FileReader()
-
-    reader.onload = async (eventAfterLoad) => {
-        let fileBufferedData = eventAfterLoad.target.result
-
-        let encryptedFile = await encrypt(fileBufferedData, true)
-        console.log(`File is encrypted`)
-
-        let maskedEncryptedFile = mask(encryptedFile)
-        console.log(`File is masked`)
-
-        let exposedBValue = `{${getMyPublic()}}`
-        var maskedFileToTransfer = await new Blob([exposedBValue, maskedEncryptedFile]).arrayBuffer()
-
-        let response = await $.post('/transfer', {
-            fileBuffer: maskedFileToTransfer
-        })
-    }
-
+    reader.onload = onFileLoad
     reader.readAsArrayBuffer(event.target.files[0])
 }
 
 $(document).ready(async () => {
-    $(`#fileInput`).change(changeEventForFilesLoad)
+    let publicKey = await $.get('/publicKey')
+    crypto = new Crypto(publicKey)
+    masker = new Mask(maskValue)
 
-    let result = await $.get('/public')
-    init(result.public)
+    $(`#fileInput`).change(changeEventForFilesLoad)
     $('#fileInput').prop('disabled', false)
 })
