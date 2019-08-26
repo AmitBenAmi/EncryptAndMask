@@ -42,7 +42,7 @@ class Crypto {
 
     async _generateKey() {
         try {
-            await subtleCrypto.generateKey(ecdhGenerationKeyAlgorithm, false, ['deriveKey'])
+            return await subtleCrypto.generateKey(ecdhGenerationKeyAlgorithm, false, ['deriveKey'])
         } catch (e) {
             console.error(`Couldn't generate key. Reason: ${e.message}`)
         }
