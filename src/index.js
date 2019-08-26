@@ -1,6 +1,6 @@
 import path from 'path'
 import express from 'express'
-import dh from './dhAlgo'
+import ECDHAlgorithm from './ecdhAlgo'
 const app = express()
 const port = 3000
 
@@ -12,8 +12,9 @@ app.get('favicon.ico', (req, res) => {
 })
 
 app.get('/public', (req, res) => {
+    let ecdh = new ECDHAlgorithm()
     res.send({
-        public: dh.public
+        public: ecdh.public
     })
 })
 
