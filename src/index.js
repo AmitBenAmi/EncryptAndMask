@@ -14,7 +14,7 @@ app.get('favicon.ico', (req, res) => {
 
 app.get('/publicKey', (req, res) => {
     res.send({
-        public: ecdh.public
+        publicKey: ecdh.public.buffer
     })
 })
 
