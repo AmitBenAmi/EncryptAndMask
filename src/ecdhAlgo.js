@@ -2,12 +2,12 @@ import crypto from 'crypto'
 
 class ECDHAlgorithm {
     constructor() {
-        this.ecdh = crypto.createECDH('secp256k1')
-        this.ecdh.generateKeys()
+        this.ecdhKeyPair = crypto.createECDH('secp256k1')
+        this.ecdhKeyPair.generateKeys()
     }
     
     get public() {
-        return this.ecdh.getPublicKey()
+        return this.ecdhKeyPair.getPublicKey()
     }
 
     decrypt(data, publicKey) {
@@ -15,7 +15,7 @@ class ECDHAlgorithm {
     }
 
     _computeSecret(publicKey) {
-        return this.ecdh.computeSecret(publicKey)
+        return this.ecdhKeyPair.computeSecret(publicKey)
     }
 }
 
