@@ -19,9 +19,9 @@ app.get('/publicKey', (req, res) => {
 })
 
 app.post('/transfer', (req, res) => {
-    console.log('This is cool')
+    console.info('This is cool')
 })
 
 app.listen(port, () => {
-    console.log(`Listening on port ${port}.`)
+    console.info(`Listening on port ${port}.`)
 })
