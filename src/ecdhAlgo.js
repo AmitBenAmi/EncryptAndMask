@@ -2,7 +2,7 @@ import crypto from 'crypto'
 
 class ECDHAlgorithm {
     constructor() {
-        this.ecdhKeyPair = crypto.createECDH('secp256k1')
+        this.ecdhKeyPair = crypto.createECDH('prime256v1')
         this.ecdhKeyPair.generateKeys()
     }
     
