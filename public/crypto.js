@@ -28,7 +28,7 @@ class Crypto {
     async encrypt(dataToEncrypt) {
         try {
             let encodedData = this._arrayBufferToIntArray(dataToEncrypt)
-            return await subtleCrypto.encrypt(counterModeAlgorithm, encryptionKey, encodedData)
+            return await subtleCrypto.encrypt(counterModeAlgorithm, this.encryptionKey, encodedData)
         } catch (e) {
             console.error(`Couldn't encrypt data. Reason: ${e.message}`)
         }
