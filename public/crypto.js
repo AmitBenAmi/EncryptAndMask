@@ -36,7 +36,7 @@ class Crypto {
 
     async decrypt(dataToDecrypt) {
         try {
-            return await subtleCrypto.decrypt(counterModeAlgorithm, encryptionKey, dataToDecrypt)
+            return await subtleCrypto.decrypt(counterModeAlgorithm, this.encryptionKey, dataToDecrypt)
         } catch (e) {
             console.error(`Couldn't decrypt data. Reason: ${e.message}`)
         }
