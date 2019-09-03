@@ -30,7 +30,8 @@ let changeEventForFilesLoad = (event) => {
 
 $(document).ready(async () => {
     let response = await $.get('/publicKey')
-    crypto = new Crypto().init(new Uint8Array(response.publicKey.data).buffer)
+    crypto = new Crypto()
+    await crypto.init(new Uint8Array(response.publicKey.data).buffer)
     masker = new Mask(maskValue)
 
     $(`#fileInput`).change(changeEventForFilesLoad)
