@@ -15,7 +15,7 @@ const ecdhGenerationKeyAlgorithm = {
 
 class Crypto {
     async init(publicKey) {
-        this.ecdhKeyPair = await this._generateKey()
+        this.ecdhKeyPair = await this._generateKeys()
 
         let importedKey = await this._importKey(publicKey)
         this.encryptionKey = await this._deriveKey(importedKey)
@@ -42,7 +42,7 @@ class Crypto {
         }
     }
 
-    async _generateKey() {
+    async _generateKeys() {
         try {
             return await subtleCrypto.generateKey(ecdhGenerationKeyAlgorithm, false, ['deriveKey'])
         } catch (e) {
@@ -52,7 +52,7 @@ class Crypto {
 
     async _importKey(publicKey) {
         try {
-            return await subtleCrypto.importKey('raw', publicKey, ELLIPTIC_CURVED_DIFFIE_HELLMAN_ALGO_NAME, false, ['encrypt'])
+            return await subtleCrypto.importKey('raw', publicKey, ecdhGenerationKeyAlgorithm, false, [])
         } catch (e) {
             console.error(`Couldn't import key. Reason: ${e.message}`)
         }
