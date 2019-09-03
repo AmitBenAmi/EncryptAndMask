@@ -1,6 +1,6 @@
 import Crypto from './crypto.js'
 import Mask from './mask.js'
-const maskValue = 4233
+const maskValue = 117
 let crypto
 let masker
 
