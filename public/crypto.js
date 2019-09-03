@@ -6,7 +6,7 @@ const ELLIPTIC_CURVED_DIFFIE_HELLMAN_ALGO_NAME = 'ECDH'
 const counterModeAlgorithm = {
     name: 'AES-CTR',
     counter: iv,
-    length: 64
+    length: 256
 }
 const ecdhGenerationKeyAlgorithm = {
     name: ELLIPTIC_CURVED_DIFFIE_HELLMAN_ALGO_NAME,
