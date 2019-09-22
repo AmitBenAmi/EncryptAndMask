@@ -17,9 +17,11 @@ let onFileLoad = async (eventAfterLoad) => {
     let publicKeyAsUInt8Array = new Uint8Array(publicKey)
     var maskedFileToTransfer = await new Blob([publicKeyAsUInt8Array, maskedEncryptedFile]).arrayBuffer()
 
-    let response = await $.post('/transfer', {
-        //fileBuffer: new Uint8Array(maskedFileToTransfer)
-        fileBuffer: 'hello'
+    let response = await $.ajax({
+        url: '/transfer',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(Array.from(new Uint8Array(maskedFileToTransfer)))
     })
 }
 

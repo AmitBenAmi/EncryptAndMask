@@ -6,6 +6,7 @@ const port = 3000
 const ecdh = new ECDHAlgorithm()
 
 app.use(express.static(path.join(__dirname, '../../public')))
+app.use(express.urlencoded({extended: false}))
 app.use(express.json())
 
 app.get('favicon.ico', (req, res) => {
