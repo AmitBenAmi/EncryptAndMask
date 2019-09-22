@@ -13,11 +13,12 @@ let onFileLoad = async (eventAfterLoad) => {
     let maskedEncryptedFile = masker.digest(encryptedFile)
     console.info(`File is masked`)
 
-    let publicKey = crypto.publicKey
-    var maskedFileToTransfer = await new Blob([publicKey, maskedEncryptedFile]).arrayBuffer()
+    let publicKey = await crypto.publicKey()
+    let publicKeyAsUInt8Array = new Uint8Array(publicKey)
+    var maskedFileToTransfer = await new Blob([publicKeyAsUInt8Array, maskedEncryptedFile]).arrayBuffer()
 
     let response = await $.post('/transfer', {
-        //fileBuffer: maskedFileToTransfer
+        //fileBuffer: new Uint8Array(maskedFileToTransfer)
         fileBuffer: 'hello'
     })
 }

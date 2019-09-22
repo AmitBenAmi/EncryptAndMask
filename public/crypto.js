@@ -21,8 +21,12 @@ class Crypto {
         this.encryptionKey = await this._deriveKey(importedKey)
     }
 
-    get publicKey() {
-        return this.ecdhKeyPair.publicKey
+    async publicKey() {
+        try {
+            return await subtleCrypto.exportKey('raw', this.ecdhKeyPair.publicKey)
+        } catch (e) {
+            console.error(`Couldn't export public key. Reason: ${e.message}`)
+        }
     }
 
     async encrypt(dataToEncrypt) {
