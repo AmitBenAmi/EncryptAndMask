@@ -17,7 +17,7 @@
   "homepage": "https://github.com/AmitBenAmi/EncryptAndDecrypt#readme",
   "dependencies": {
     "big-integer": "^1.6.44",
-    "express": "^4.17.1"
+    "express": "^4.17.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.5",
